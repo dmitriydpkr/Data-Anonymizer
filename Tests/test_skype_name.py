@@ -32,6 +32,6 @@ class TestSkypeName(unittest.TestCase):
         expected = 't)'
         self.assertEqual(result, expected)
 
-#
-# if __name__ == '__main__':
-#     unittest.main()
+
+if __name__ == '__main__':
+    unittest.main()
