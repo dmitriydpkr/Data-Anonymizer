@@ -7,25 +7,25 @@ def get_skype_name(test_string: str, masks_char: str) -> str:
     if get_format_name:
         new_string = re.sub(r'skype:\w+', 'skype:' + masks_char, test_string)
         return new_string
-    print('Username is not correct format')
+    print('Username is not correct format (warning)')
     return test_string
 
 
 def get_phone_number(test_string: str, count_hidden_digits: int, masks_char: str) -> str:
+    phone_numbers = re.findall(r'[+]\d+ \d\d\d \d\d\d \d\d\d', test_string)
 
-    phone_numbers = re.findall(r'[+]\d\d \d\d\d \d\d\d \d\d\d', test_string)
     if count_hidden_digits == 0 and len(test_string) > 1:
         print('Count hidden digits = 0 (warning)')
         return test_string
-    elif count_hidden_digits > 11 or len(test_string) < 1:
-        print('Count hidden digits > 11 or string is empty (warning)')
+    elif count_hidden_digits > 12 or len(test_string) < 1:
+        print('Count hidden digits > 12 or string is empty (warning)')
         return test_string
 
     new_string = test_string
     count_spaces = count_hidden_digits // 3
     for phone_number in phone_numbers:
-        hidden_number = phone_number[:-count_hidden_digits-count_spaces] + count_hidden_digits % 3 * masks_char + \
-            count_spaces * (' ' + 3 * masks_char)
+        hidden_number = phone_number[:-count_hidden_digits - count_spaces] + count_hidden_digits % 3 * masks_char + \
+                        count_spaces * (' ' + 3 * masks_char)
         new_string = new_string.replace(phone_number, hidden_number)
     return new_string
 
@@ -84,8 +84,8 @@ if __name__ == '__main__':
     #     print(f'(OUTPUT) {get_email(string,  masks_char)}')
     # except TypeError:
     #     print("Incorrect type of data. Please, input again")
-    #
-    #
+
+
 
 
 

@@ -30,7 +30,7 @@ class TestPhoneNumber(unittest.TestCase):
 
     def test_get_phone_number_12(self):
         test_string = 'Lorem +48 845 546 546, +48 777 777 777 sit 898 845 566 amet'
-        count_hidden_digits = 12
+        count_hidden_digits = 13
         masks_char = 'X'
         result = get_phone_number(test_string, count_hidden_digits, masks_char)
         expected = 'Lorem +48 845 546 546, +48 777 777 777 sit 898 845 566 amet'
